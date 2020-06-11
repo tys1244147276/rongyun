@@ -1,0 +1,72 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\taoyuesong\\Desktop\\prj\\test_prj_flutter\\imkit-flutter-quickstart\\build\\flutter_webview_plugin\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\taoyuesong\\.gradle\\caches\\transforms-2\\files-2.1\\1748002ce5e4420a28f05ac1b3d7d7f9\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\taoyuesong\\.gradle\\caches\\transforms-2\\files-2.1\\10801a7a20ec687d407babb0008b7753\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\taoyuesong\\Desktop\\prj\\test_prj_flutter\\imkit-flutter-quickstart\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\debug\\values-v16\\values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\taoyuesong\\.gradle\\caches\\transforms-2\\files-2.1\\1748002ce5e4420a28f05ac1b3d7d7f9\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\taoyuesong\\.gradle\\caches\\transforms-2\\files-2.1\\10801a7a20ec687d407babb0008b7753\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.rongcloud_im_plugin_example"
+    android:targetSandboxVersion="2"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="22"
+        android:targetSdkVersion="28" />
+    <!--
+         Flutter needs it to communicate with the running application
+         to allow setting breakpoints, to provide hot reload, etc.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--
+     io.flutter.app.FlutterApplication is an android.app.Application that
+         calls FlutterMain.startInitialization(this); in its onCreate method.
+         In most cases you can leave this as-is, but you if you want to provide
+         additional functionality it is fine to subclass or reimplement
+         FlutterApplication and put your custom class here.
+    -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 消息通道保活 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="io.flutter.app.FlutterApplication"
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="rongcloud_im_plugin_example"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.example.rongcloud_im_plugin_example.MainActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:windowSoftInputMode="adjustResize" >
+
+            <!--
+                 This keeps the window background of the activity showing
+                 until Flutter renders its first frame. It can be removed if
+                 there is no splash screen (such as the default splash screen
+                 defined in @style/LaunchTheme).
+            -->
+            <meta-data
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.rongcloud_im_plugin_example.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+        <provider
+            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+            android:authorities="com.example.rongcloud_im_plugin_example.flutter.image_provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/flutter_image_picker_file_paths" />
+        </provider> <!-- imlib config begin -->
+        <meta-data
+            android:name="RONG_CLOUD_APP_KEY"
+            android:value="此处添加APP_KEY" />
+
+        <service
+            android:name="io.rong.imlib.ipc.RongService"
+            android:process=":ipc" />
+
+        <receiver android:name="io.rong.imlib.ConnectChangeReceiver" />
+        <receiver
+            android:name="io.rong.imlib.HeartbeatReceiver"
+            android:process=":ipc" /> <!-- imlib config end -->
+        <!-- 必选： SDK 核心功能 -->
+        <service
+            android:name="io.rong.push.rongpush.PushService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process="io.rong.push" /> <!-- push 相关事件接收器 -->
+        <receiver
+            android:name="io.rong.push.rongpush.PushReceiver"
+            android:process="io.rong.push" > <!-- 此处进程可以改名，名称需要和PushService所在进程统一 -->
+            <!-- 心跳事件和网络切换事件监听,必须 -->
+            <intent-filter>
+                <action android:name="io.rong.push.intent.action.HEART_BEAT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+
+            <!-- 部分用户事件监听, 用来提高推送拉活率; 可移除 -->
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
